@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const { firstName, middleName, lastName } = req.body
     const addStudent = await query({
-      query: "INSERT INTO student_tbl (first_name, middle_name, last_name) VALUES (?, ?, ?)",
+      query: "INSERT INTO student_tbl (first_name, middle_name, last_name) VALUES (TRIM(?), TRIM(?), TRIM(?))",
       values: [firstName, middleName, lastName],
     })
     let student = []
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
   if (req.method === "PUT") {
     const { firstName, middleName, lastName, studentId } = req.body
     const updateStudent = await query({
-      query: "UPDATE student_tbl SET first_name = ?, middle_name = ?, last_name = ? WHERE tbl_id = ? LIMIT 1",
+      query: "UPDATE student_tbl SET first_name = TRIM(?), middle_name = TRIM(?), last_name = TRIM(?) WHERE tbl_id = ? LIMIT 1",
       values: [firstName, middleName, lastName, studentId],
     })
     const result = updateStudent.affectedRows

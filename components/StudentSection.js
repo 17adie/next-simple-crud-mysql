@@ -57,10 +57,9 @@ function StudentSection() {
   }
 
   async function addNewStudent() {
-    console.log(fullName)
-    let { firstName, middleName, lastName } = fullName
+    let { firstName, lastName } = fullName
 
-    if (firstName.length == 0 || lastName.length == 0) {
+    if (firstName.trim().length == 0 || lastName.trim().length == 0) {
       toast.error("Please fill all required fields.")
       return
     }
@@ -86,15 +85,9 @@ function StudentSection() {
   }
 
   async function updateProduct() {
-    let { firstName, middleName, lastName, studentId } = fullName
+    let { firstName, lastName } = fullName
 
-    // for undefined values: first initialization
-    if (!firstName || !middleName || !lastName) {
-      toast.error("Please fill all required fields.")
-      return
-    }
-
-    if (firstName.length == 0 || middleName.length == 0 || lastName.length == 0) {
+    if (firstName.trim().length == 0 || lastName.trim().length == 0) {
       toast.error("Please fill all required fields.")
       return
     }
@@ -153,7 +146,7 @@ function StudentSection() {
     const { name, value } = event.target
     setFullName((prevName) => ({
       ...prevName,
-      [name]: value.trim(),
+      [name]: value,
     }))
   }
 
@@ -175,6 +168,7 @@ function StudentSection() {
   return (
     <>
       <div className="w-full bg-white rounded-md">
+        <input type="text" />
         <div className="flex flex-wrap p-5">
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
