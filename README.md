@@ -1,4 +1,5 @@
 # Simple NextJs CRUD App using Tailwind an Mysql
 
-sample demo:
+DEMO:
+
 ![CRUD Demo](demo/demo.gif)
