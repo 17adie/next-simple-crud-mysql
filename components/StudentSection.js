@@ -12,12 +12,7 @@ function StudentSection() {
   // para kada bago ng state nag ra rrun yung useEffect, para dn pag same ung rows na inedit makukuha padin yung value
   const [hold, setHold] = useState(false)
 
-  const [fullName, setFullName] = useState({
-    studentId: "",
-    firstName: "",
-    middleName: "",
-    lastName: "",
-  })
+  const [fullName, setFullName] = useState([])
 
   // functions
 
@@ -62,15 +57,10 @@ function StudentSection() {
   }
 
   async function addNewStudent() {
+    console.log(fullName)
     let { firstName, middleName, lastName } = fullName
 
-    // for undefined values: first initialization
-    if (!firstName || !middleName || !lastName) {
-      toast.error("Please fill all required fields.")
-      return
-    }
-
-    if (firstName.length == 0 || middleName.length == 0 || lastName.length == 0) {
+    if (firstName.length == 0 || lastName.length == 0) {
       toast.error("Please fill all required fields.")
       return
     }
@@ -175,10 +165,10 @@ function StudentSection() {
   // every id changes(edit btn) this effect runs
   useEffect(() => {
     setFullName({
-      studentId: studentInfo.tbl_id,
-      firstName: studentInfo.first_name,
-      middleName: studentInfo.middle_name,
-      lastName: studentInfo.last_name,
+      studentId: studentInfo.tbl_id || "",
+      firstName: studentInfo.first_name || "",
+      middleName: studentInfo.middle_name || "",
+      lastName: studentInfo.last_name || "",
     })
   }, [hold])
 
@@ -209,7 +199,7 @@ function StudentSection() {
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-middle-name"
             >
-              Middle Name <small className="text-red-400">required</small>
+              Middle Name
             </label>
             <input
               className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
