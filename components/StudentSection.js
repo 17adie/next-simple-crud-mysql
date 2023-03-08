@@ -168,7 +168,6 @@ function StudentSection() {
   return (
     <>
       <div className="w-full bg-white rounded-md">
-        <input type="text" />
         <div className="flex flex-wrap p-5">
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
